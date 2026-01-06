@@ -1,1 +1,162 @@
+/**
+ * AI Problem Analysis Module - Styles
+ */
 
+/* AI Analysis Button */
+.ai-analysis-btn {
+    margin-right: 4px;
+    padding: 2px 6px;
+    font-size: 16px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.ai-analysis-btn:hover {
+    background: #f4f4f4;
+    border-color: #1f8feb;
+    transform: scale(1.1);
+}
+
+/* Popup Content */
+.ai-analysis-popup {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Loading Spinner */
+.ai-analysis-loading {
+    text-align: center;
+    padding: 40px;
+}
+
+.ai-analysis-loading .loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1f8feb;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ai-analysis-loading .loading-text {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Analysis Content */
+.ai-analysis-content {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.ai-analysis-header {
+    border-bottom: 2px solid #e8e8e8;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.analysis-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #666;
+}
+
+.backend-badge {
+    background: #1f8feb;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.timestamp {
+    color: #999;
+}
+
+/* Analysis Body */
+.ai-analysis-body {
+    line-height: 1.6;
+    color: #333;
+}
+
+.ai-analysis-body h2 {
+    color: #1f8feb;
+    font-size: 18px;
+    margin: 20px 0 10px;
+    border-bottom: 2px solid #e8e8e8;
+    padding-bottom: 5px;
+}
+
+.ai-analysis-body h3 {
+    color: #333;
+    font-size: 16px;
+    margin: 15px 0 8px;
+    font-weight: 600;
+}
+
+.ai-analysis-body ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.ai-analysis-body li {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+.ai-analysis-body p {
+    margin: 10px 0;
+}
+
+.ai-analysis-body code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.ai-analysis-body pre {
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    border-left: 3px solid #1f8feb;
+}
+
+/* Error Display */
+.ai-analysis-error {
+    padding: 20px;
+    background: #ffebee;
+    border: 1px solid #ef5350;
+    border-radius: 4px;
+    color: #c62828;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ai-analysis-popup {
+        padding: 10px;
+    }
+    
+    .ai-analysis-content {
+        max-height: 400px;
+    }
+    
+    .analysis-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
