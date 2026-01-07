@@ -1,25 +1,40 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types = 1);
 
 namespace Modules\AIProblemAnalysis;
 
 use APP;
-use CController;
-use CControllerResponseData;
-use CControllerResponseFatal;
+use CController as CAction;
+use CWebUser;
+use CMenuItem;
+
+// Smart CModule detection like your working module
+if (!class_exists('Zabbix\Core\CModule') && class_exists('Core\CModule')) {
+    class_alias('Core\CModule', 'Zabbix\Core\CModule');
+}
 
 use Zabbix\Core\CModule;
 
+/**
+ * AI Problem Analysis Module
+ */
 class Module extends CModule {
 
     /**
-     * Initialize module
+     * Initialize module.
      */
     public function init(): void {
+        // Only show for Zabbix users+ (adjust as needed)
+        if (CWebUser::getType() < USER_TYPE_ZABBIX_USER) {
+            return;
+        }
+
+        // Add to Problems submenu (no menu entry needed for popup module)
         APP::Component()->get('menu.main')
             ->findOrAdd(_('Monitoring'))
             ->getSubmenu()
             ->find(_('Problems'))
-            ->setAction('problem.view');
+            ->setAttribute('actions', ['ai.analysis.popup']);
     }
 
     /**
@@ -40,10 +55,6 @@ class Module extends CModule {
         ];
     }
 
-    /**
-     * Handle popup action
-     */
-    public static function popup(): CController {
-        return new Actions\Popup();
-    }
+    public function onBeforeAction(CAction $action): void {}
+    public function onTerminate(CAction $action): void {}
 }
