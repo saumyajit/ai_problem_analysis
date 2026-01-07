@@ -1,28 +1,33 @@
 {
-    "manifest_version": 2.0,
-    "id": "ai-problem-analysis",
-    "name": "AI Problem Analysis",
-    "version": "1.0.0",
-    "namespace": "AIProblemAnalysis",
-    "description": "AI-powered analysis for Zabbix problems with multiple backend support",
-    "author": "Your Name",
-    "url": "https://github.com/yourusername/zabbix-ai-analysis",
-    "actions": [
-        {
-            "name": "ai.analysis.popup",
-            "handler": "Module::popup"
-        }
-    ],
-    "config": {
-        "ai_backend": "claude",
-        "anthropic_api_key": "",
-        "openai_api_key": "",
-        "openai_model": "gpt-4",
-        "claude_model": "claude-sonnet-4-20250514",
-        "custom_api_url": "",
-        "custom_api_key": "",
-        "analysis_timeout": 30,
-        "include_history_hours": 24,
-        "cache_duration": 300
-    }
+	"manifest_version": 2,
+	"id": "ai-problem-analysis",
+	"type": "module",
+	"name": "AI Problem Analysis",
+	"version": "1.0",
+	"namespace": "AIProblemAnalysis",
+	"author": "Your Name",
+	"url": "https://github.com/yourusername/zabbix-ai-analysis",
+	"description": "AI-powered analysis for Zabbix problems with multiple backend support",
+	"actions": {
+		"ai.analysis.popup": {
+			"class": "actions\\Popup",
+			"layout": "popup.php"
+		},
+		"ai.analysis.analyze": {
+			"class": "actions\\Analyze",
+			"menu": "problems"
+		}
+	},
+	"config": {
+		"ai_backend": "claude",
+		"anthropic_api_key": "",
+		"openai_api_key": "",
+		"openai_model": "gpt-4",
+		"claude_model": "claude-sonnet-4-20250514",
+		"custom_api_url": "",
+		"custom_api_key": "",
+		"analysis_timeout": 30,
+		"include_history_hours": 24,
+		"cache_duration": 300
+	}
 }
