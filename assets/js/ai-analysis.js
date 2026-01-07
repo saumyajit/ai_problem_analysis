@@ -9,39 +9,36 @@
     /**
      * Initialize AI Analysis buttons on problem page
      */
-    function initAIAnalysisButtons() {
-        // Wait for problems table to load
-        const problemsTable = document.querySelector('[data-tableid="problems"]');
-        if (!problemsTable) {
-            return;
-        }
-        
-        // Add AI Analysis button to each problem row
-        const problemRows = problemsTable.querySelectorAll('tbody tr');
-        
-        problemRows.forEach(row => {
-            // Skip if button already added
-            if (row.querySelector('.ai-analysis-btn')) {
-                return;
-            }
-            
-            // Get event ID from row
-            const eventId = getEventIdFromRow(row);
-            if (!eventId) {
-                return;
-            }
-            
-            // Create AI Analysis button
-            const aiButton = createAIButton(eventId);
-            
-            // Insert button in actions column
-            const actionsCell = row.querySelector('.list-table-actions');
-            if (actionsCell) {
-                actionsCell.insertBefore(aiButton, actionsCell.firstChild);
-            }
-        });
-    }
-    
+	// Replace the initAIAnalysisButtons() function with this:
+	function initAIAnalysisButtons() {
+		console.log('🔍 Scanning for problem rows...');
+		
+		// Multiple selectors for different Zabbix versions/layouts
+		const tables = document.querySelectorAll('table[data-target="problems"], table#tbl_problems, table.list-table');
+		console.log('Found tables:', tables.length);
+		
+		tables.forEach(table => {
+			const rows = table.querySelectorAll('tbody tr');
+			console.log('Rows in table:', rows.length);
+			
+			rows.forEach(row => {
+				if (row.querySelector('.ai-analysis-btn')) return; // Skip if exists
+				
+				const eventId = getEventIdFromRow(row);
+				console.log('Row eventId:', eventId);
+				
+				if (eventId) {
+					const actionsCell = row.querySelector('td:last-child, .list-table-actions, td.action');
+					if (actionsCell) {
+						const aiButton = createAIButton(eventId);
+						actionsCell.prepend(aiButton);
+						console.log('✅ Added AI button for event', eventId);
+					}
+				}
+			});
+		});
+	}
+
     /**
      * Extract event ID from table row
      */
