@@ -7,7 +7,9 @@ use CController;
 use CControllerResponseData;
 use CControllerResponseFatal;
 
-class Module extends \Core\CModule {
+use Zabbix\Core\CModule;
+
+class Module extends CModule {
 
     /**
      * Initialize module
