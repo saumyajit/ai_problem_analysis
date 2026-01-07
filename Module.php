@@ -23,19 +23,21 @@ class Module extends CModule {
     /**
      * Initialize module.
      */
-    public function init(): void {
-        // Only show for Zabbix users+ (adjust as needed)
-        if (CWebUser::getType() < USER_TYPE_ZABBIX_USER) {
-            return;
-        }
-
-        // Add to Problems submenu (no menu entry needed for popup module)
-        APP::Component()->get('menu.main')
-            ->findOrAdd(_('Monitoring'))
-            ->getSubmenu()
-            ->find(_('Problems'))
-            ->setAttribute('actions', ['ai.analysis.popup']);
-    }
+	public function init(): void {
+		if (CWebUser::getType() < USER_TYPE_ZABBIX_USER) {
+			return;
+		}
+	
+		// CRITICAL: Load assets ONLY on problem.view pages
+		$action = $_REQUEST['action'] ?? '';
+		if (strpos($action, 'problem.view') !== false || strpos($action, 'problem.list') !== false) {
+			// Register JS/CSS with correct module-relative paths
+			$module_path = APP::ModuleManager()->getModule('ai-problem-analysis')->getPath();
+			APP::Component()->get('page.header')
+				->addCssFile($module_path . '/assets/css/ai-analysis.css')
+				->addJsFile($module_path . '/assets/js/ai-analysis.js');
+		}
+	}
 
     /**
      * Get default module configuration
