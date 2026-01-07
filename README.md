@@ -21,7 +21,7 @@ Create the following directory structure in your Zabbix frontend:
 ui/modules/ai-problem-analysis/
 ├── manifest.json
 ├── Module.php
-├── Actions/
+├── actions/
 │   ├── Popup.php
 │   └── Analyze.php
 ├── Services/
